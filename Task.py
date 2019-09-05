@@ -7,6 +7,9 @@ class TaskList:
     def __init__(self, tasks):
         self.tasks = tasks
 
+    def copy_task_list(self, task_list):
+        self.tasks = task_list.tasks
+
     def import_json(self):
         output = TaskList([])
         try:
@@ -14,7 +17,7 @@ class TaskList:
                 data = json.load(jsonFile)
                 output = TaskList(self.get_tasks_from_json(data))
         except:
-            print("no such file, will create a new one")
+            raise Exception("No file to load")
 
         return output
 

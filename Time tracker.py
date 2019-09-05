@@ -1,3 +1,5 @@
+import getpass
+import os
 import time
 from datetime import datetime
 
@@ -6,14 +8,34 @@ import win32gui
 
 from Task import *
 
+global task_list
+global task_name
+global past_window
+global start_time
+global running
 
-task_list = TaskList([]).import_json()
+running = False
+task_list = None
+past_window = None
+start_time = None
+task_name = None
 
 
-past_window = win32gui.GetWindowText(win32gui.GetForegroundWindow())
-start_time = datetime.now()
+def start():
+    global task_list
+    global task_name
+    global past_window
+    global start_time
+    global running
 
-task_name = ""
+    try:
+        task_list = TaskList([]).import_json()
+    except Exception:
+        task_list = TaskList([])
+    past_window = win32gui.GetWindowText(win32gui.GetForegroundWindow())
+    start_time = datetime.now()
+    task_name = ""
+    running = True
 
 
 def name_formatter(name):
@@ -31,8 +53,20 @@ def url_formatter():
     chrome = uiautomation.ControlFromHandle(window)
     return chrome.EditControl().GetValuePattern().Value.split("/")[0]
 
+def add_to_startup(file_path=""):
+    USER_NAME = getpass.getuser()
+    if file_path == "":
+        file_path = os.path.dirname(os.path.realpath(__file__))
+    bat_path = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' % USER_NAME
+    with open(bat_path + '\\' + "open.bat", "w+") as bat_file:
+        bat_file.write(r'start "" %s' % file_path)
 
-while True:
+
+if __name__ == "__main__":
+    start()
+
+while running:
+
     try:
         new_window = win32gui.GetWindowText(win32gui.GetForegroundWindow())
         if new_window != past_window:
@@ -58,3 +92,5 @@ while True:
     except KeyboardInterrupt:
         with open("tasks.json", "w") as json_file:
             json.dump(task_list.serialize(), json_file, indent=4, sort_keys=True)
+
+

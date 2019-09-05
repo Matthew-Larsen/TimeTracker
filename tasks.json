@@ -1,3 +1,67 @@
 {
-    "tasks": []
+    "tasks": [
+        {
+            "name": "TimeTracker [D:\\Coding Projects\\Coding\\TimeTracker] PyCharm",
+            "usage_data": [
+                {
+                    "days": 0,
+                    "end_time": "2019-09-05 13:33:09",
+                    "hours": 0,
+                    "minutes": 0,
+                    "seconds": 5,
+                    "start_time": "2019-09-05 13:33:04"
+                },
+                {
+                    "days": 0,
+                    "end_time": "2019-09-05 13:45:19",
+                    "hours": 0,
+                    "minutes": 0,
+                    "seconds": 10,
+                    "start_time": "2019-09-05 13:45:09"
+                },
+                {
+                    "days": 0,
+                    "end_time": "2019-09-05 13:45:24",
+                    "hours": 0,
+                    "minutes": 0,
+                    "seconds": 5,
+                    "start_time": "2019-09-05 13:45:19"
+                },
+                {
+                    "days": 0,
+                    "end_time": "2019-09-05 13:47:41",
+                    "hours": 0,
+                    "minutes": 0,
+                    "seconds": 15,
+                    "start_time": "2019-09-05 13:47:26"
+                }
+            ]
+        },
+        {
+            "name": "effbot.org",
+            "usage_data": [
+                {
+                    "days": 0,
+                    "end_time": "2019-09-05 13:33:19",
+                    "hours": 0,
+                    "minutes": 0,
+                    "seconds": 10,
+                    "start_time": "2019-09-05 13:33:09"
+                }
+            ]
+        },
+        {
+            "name": "python-course.eu",
+            "usage_data": [
+                {
+                    "days": 0,
+                    "end_time": "2019-09-05 13:33:24",
+                    "hours": 0,
+                    "minutes": 0,
+                    "seconds": 5,
+                    "start_time": "2019-09-05 13:33:19"
+                }
+            ]
+        }
+    ]
 }
