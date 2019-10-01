@@ -44,7 +44,10 @@ def name_formatter(name):
         if len(split_by_hyphen) == 3 and split_by_hyphen[2] == "PyCharm":
             return split_by_hyphen[0] + " " + split_by_hyphen[2]
     elif "Google Chrome" in name:
-        return url_formatter()
+        try:
+            return url_formatter()
+        except LookupError:
+            return "Google Chrome"
     return name
 
 
@@ -73,14 +76,13 @@ while running:
             end_time = datetime.now()
             window_name = name_formatter(past_window)
             use = Use(start_time, end_time)
-
             used_before = False
             for task in task_list.tasks:
                 if task.name == window_name:
                     used_before = True
                     task.usage_data.append(use)
             if not used_before:
-                task = Task(window_name, [use])
+                task = Task(window_name, [use], [])
                 task_list.tasks.append(task)
 
             with open("tasks.json", "w") as json_file:

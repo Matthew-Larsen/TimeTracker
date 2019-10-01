@@ -47,14 +47,16 @@ class TaskList:
 
 class Task:
 
-    def __init__(self, name, usage_data):
+    def __init__(self, name, usage_data, tags):
         self.name = name
         self.usage_data = usage_data
+        self.tags = tags
 
     def serialize(self):
         return {
             'name': self.name,
-            'usage_data': self.convert_uses_to_json()
+            'usage_data': self.convert_uses_to_json(),
+            "tags": ""
         }
 
     def convert_uses_to_json(self):
