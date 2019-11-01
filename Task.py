@@ -9,22 +9,23 @@ class TaskList:
 
     def copy_task_list(self, task_list):
         self.tasks = task_list.tasks
+        return self
 
     def import_json(self):
         output = TaskList([])
-        try:
-            with open("tasks.json", "r") as jsonFile:
-                data = json.load(jsonFile)
-                output = TaskList(self.get_tasks_from_json(data))
-        except:
-            raise Exception("No file to load")
+        # try:
+        with open("tasks.json", "r") as jsonFile:
+            data = json.load(jsonFile)
+            output = TaskList(self.get_tasks_from_json(data))
+        # except:
+        #     raise Exception("No file to load")
 
         return output
 
     def get_tasks_from_json(self, data):
         output_list = []
         for task in data['tasks']:
-            output_list.append(Task(task["name"], self.get_usage_data_from_json(task)))
+            output_list.append(Task(task["name"], self.get_usage_data_from_json(task), task["tags"]))
         return output_list
 
     def get_usage_data_from_json(self, task):
